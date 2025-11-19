@@ -16,6 +16,7 @@ export class Tabs {
 
   constructor() {
     effect(() => {
+      console.log('locations', this.locations());
       const locs = this.locations();
       if (locs.length > 0 && !this.active) {
         this.active = locs[0].id;
@@ -28,7 +29,5 @@ export class Tabs {
 
   close(event: MouseEvent, locationId: string) {
     this.locationService.removeLocation(locationId);
-    event.preventDefault();
-    event.stopImmediatePropagation();
   }
 }

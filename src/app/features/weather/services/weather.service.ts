@@ -9,11 +9,12 @@ import { WeatherResponse } from '../models/weather.interface';
 export class WeatherService {
   HttpClient = inject(HttpClient);
 
-  getCurrentWeatherbyZipCode(zipCode: string) {
+  getTodayWeatherbyZipCode(zipCode: string) {
     let params = new HttpParams();
     params = params.set('postal_code', zipCode);
     params = params.set('key', environment.apiKey);
-    const url = `${environment.apiUrl}/current`;
+    params = params.set('days', '1');
+    const url = `${environment.apiUrl}/forecast/daily`;
     return this.HttpClient.get<WeatherResponse>(url, { params });
   }
 }
