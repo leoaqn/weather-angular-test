@@ -1,15 +1,21 @@
 import { Component, Input } from '@angular/core';
-import { CurrentWeather } from '../../models/weather.interface';
+
 import { environment } from '../../../../../environments/environment';
 import { OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Location } from '../../models/location.interface';
 @Component({
   selector: 'app-weather-description',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './weather-description.html',
   styleUrl: './weather-description.scss',
 })
-export class WeatherDescription {
-  @Input({ required: true }) weatherData?: CurrentWeather;
+export class WeatherDescription implements OnInit {
+  @Input({ required: true }) location?: Location;
+
+  ngOnInit(): void {
+    console.log(this.location);
+  }
 
   getWeatherIconUrl(icon: string): string {
     return `${environment.weatherIconUrl}/${icon}.png`;

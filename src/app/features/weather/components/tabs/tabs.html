@@ -11,7 +11,7 @@
       <i class="bi bi-x-lg ms-3 fw-bold text-white ms" (click)="close($event, location.id)"></i>
     </button>
     <ng-template ngbNavContent>
-      <app-weather-description [weatherData]="location.weatherData"></app-weather-description>
+      <app-weather-description [location]="location"></app-weather-description>
     </ng-template>
   </li>
   }

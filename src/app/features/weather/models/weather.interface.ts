@@ -5,6 +5,7 @@ export interface WeatherDescription {
 }
 
 export interface CurrentWeather {
+  date: string;
   temp: number;
   city_name: string;
   max_temp: number;
@@ -14,9 +15,26 @@ export interface CurrentWeather {
   weather: WeatherDescription;
 }
 
+export interface ForecastDay {
+  datetime: string;
+  temp: number;
+  max_temp: number;
+  min_temp: number;
+  weather: WeatherDescription;
+}
+
 export interface WeatherResponse {
-  count: number;
   city_name: string;
   state_code: string;
+  country_code: string;
+  lat: number;
+  lon: number;
+  timezone: string;
   data: CurrentWeather[];
+}
+
+export interface ForecastResponse {
+  city_name: string;
+  state_code: string;
+  data: ForecastDay[];
 }
