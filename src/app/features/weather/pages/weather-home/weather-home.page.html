@@ -1,7 +1,44 @@
 <section class="d-flex flex-column flex-md-column gap-4 mb-5 back bg-light p-4 rounded-3">
-  <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Zip Code</label>
-    <input class="form-control" id="exampleFormControlInput1" placeholder="Ex. 12345" />
-  </div>
+  <form [formGroup]="weatherForm" (ngSubmit)="onSubmit()">
+    <div class="row g-3 align-items-start justify-content-between">
+      <div class="col-12 col-md-auto">
+        <label for="zipCodeInput" class="form-label">Zip Code</label>
+        <input
+          class="form-control"
+          id="zipCodeInput"
+          formControlName="zipCode"
+          placeholder="Ex. 12345"
+          [class.is-invalid]="zipCode?.invalid && zipCode?.touched"
+        />
+        <div class="error-container">
+          @if (zipCode?.invalid && zipCode?.touched) {
+          <div class="text-danger small mt-1">
+            @if (zipCode?.errors?.['required']) {
+            <div>Zip code is required.</div>
+            } @if (zipCode?.errors?.['pattern']) {
+            <div>Zip code must be 5 digits.</div>
+            }
+          </div>
+          }
+        </div>
+      </div>
+      <div class="col-12 col-md-auto">
+        <label class="form-label d-none d-md-block">&nbsp;</label>
+        <button type="submit" class="btn btn-primary" [disabled]="weatherForm.invalid">
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+
+@if (isLoading()) {
+<div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+} @if (locationService.locationsCount() > 0) {
+<section class="d-flex flex-column flex-md-column gap-4 mb-5 back bg-light p-4 rounded-3">
   <app-tabs></app-tabs>
 </section>
+
+}

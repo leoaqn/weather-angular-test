@@ -1,0 +1,17 @@
+@if (weatherData; as data) {
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 col-md-6 d-flex flex-column gap-2">
+        <h5>{{ data.city_name }}, {{ data.state_code }}</h5>
+        <span>Current Condition: {{ data.weather.description }}</span>
+        <span>Current Temperature: {{ data.temp }}°C</span>
+        <span>Country: {{ data.country_code }}</span>
+      </div>
+      <div class="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center">
+        <img [src]="getWeatherIconUrl(data.weather.icon)" alt="Weather Icon" class="img-fluid" />
+      </div>
+    </div>
+  </div>
+</div>
+}

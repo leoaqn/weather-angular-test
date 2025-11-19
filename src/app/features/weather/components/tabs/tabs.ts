@@ -1,28 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { WeatherDescription } from '../weather-description/weather-description';
+import { LocationService } from '../../services/location.service';
+
 @Component({
   selector: 'app-tabs',
-  imports: [NgbNavModule],
+  imports: [NgbNavModule, WeatherDescription],
   templateUrl: './tabs.html',
   styleUrl: './tabs.scss',
 })
 export class Tabs {
-  navs = [1, 2, 3];
-  counter = this.navs.length + 1;
-  active: number;
+  locationService = inject(LocationService);
+  locations = this.locationService.locations;
+  active: string | undefined;
 
   constructor() {
-    this.active = 1;
+    effect(() => {
+      const locs = this.locations();
+      if (locs.length > 0 && !this.active) {
+        this.active = locs[0].id;
+      }
+      if (locs.length > 0 && this.active && !locs.find((l) => l.id === this.active)) {
+        this.active = locs[0].id;
+      }
+    });
   }
 
-  close(event: MouseEvent, toRemove: number) {
-    this.navs = this.navs.filter((id) => id !== toRemove);
+  close(event: MouseEvent, locationId: string) {
+    this.locationService.removeLocation(locationId);
     event.preventDefault();
     event.stopImmediatePropagation();
-  }
-
-  add(event: MouseEvent) {
-    this.navs.push(this.counter++);
-    event.preventDefault();
   }
 }

@@ -1,20 +1,16 @@
 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-  @for (id of navs; track id) {
-  <li [ngbNavItem]="id">
+  @for (location of locations(); track location.id) {
+  <li [ngbNavItem]="location.id">
     <button ngbNavLink>
-      Tab {{ id }}
-      <span class="btn-close ms-3 fw-light" (click)="close($event, id)"></span>
+      {{ location.weatherData.city_name }}, {{ location.weatherData.state_code }} ({{
+      location.zipCode }})
+      <span class="btn-close ms-3 fw-light" (click)="close($event, location.id)"></span>
     </button>
     <ng-template ngbNavContent>
-      <p>Tab {{ id }} content</p>
+      <app-weather-description [weatherData]="location.weatherData"></app-weather-description>
     </ng-template>
   </li>
   }
-  <li class="nav-item" role="presentation">
-    <button type="button" class="nav-link" (click)="add($event)">...</button>
-  </li>
 </ul>
 
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
-
-<pre>Active: {{ active }}</pre>
