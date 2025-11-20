@@ -14,6 +14,7 @@ export class WeatherService {
     params = params.set('postal_code', zipCode);
     params = params.set('key', environment.apiKey);
     params = params.set('days', '1');
+    params = params.set('units', 'I');
     const url = `${environment.apiUrl}/forecast/daily`;
     return this.HttpClient.get<WeatherResponse>(url, { params });
   }
@@ -23,6 +24,7 @@ export class WeatherService {
     params = params.set('postal_code', zipCode);
     params = params.set('key', environment.apiKey);
     params = params.set('days', '5');
+    params = params.set('units', 'I');
     const url = `${environment.apiUrl}/forecast/daily`;
     return this.HttpClient.get<ForecastResponse>(url, { params });
   }

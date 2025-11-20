@@ -2,5 +2,7 @@
   font-family: 'Inter', 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #dfe1e4 0%, #eef2ff 35%, #90aedb 100%);
   display: block;
-  min-height: 100vh;
+
+  height: 100dvh;
+  overflow: auto;
 }

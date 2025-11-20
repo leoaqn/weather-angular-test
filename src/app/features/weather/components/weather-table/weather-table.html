@@ -13,9 +13,9 @@
       @if (daysData().length > 0) { @for (day of daysData(); track day.datetime) {
       <tr>
         <td>{{ day.datetime }}</td>
-        <td>{{ day.temp }}°C</td>
-        <td>{{ day.max_temp }}°C</td>
-        <td>{{ day.min_temp }}°C</td>
+        <td>{{ day.temp }}°F</td>
+        <td>{{ day.max_temp }}°F</td>
+        <td>{{ day.min_temp }}°F</td>
         <td>
           <div class="d-flex align-items-center gap-2">
             <img
