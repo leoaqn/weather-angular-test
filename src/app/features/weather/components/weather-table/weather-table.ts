@@ -13,13 +13,8 @@ export class WeatherTable implements OnInit {
 
   daysData = signal<ForecastDay[]>([]);
 
-  errorMessages = {
-    apiError: 'Failed to get weather forecast data. Please try again.',
-  };
-
   ngOnInit(): void {
     this.daysData.set(this.forecastData?.[0]?.data ?? []);
-    console.log(this.daysData());
   }
 
   getWeatherIconUrl(icon: string): string {

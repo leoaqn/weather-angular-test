@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (day of daysData(); track day.datetime) {
+      @if (daysData().length > 0) { @for (day of daysData(); track day.datetime) {
       <tr>
         <td>{{ day.datetime }}</td>
         <td>{{ day.temp }}°C</td>
@@ -27,6 +27,10 @@
             <span>{{ day.weather.description }}</span>
           </div>
         </td>
+      </tr>
+      } } @else {
+      <tr>
+        <td colspan="5" class="text-center">No data available</td>
       </tr>
       }
     </tbody>

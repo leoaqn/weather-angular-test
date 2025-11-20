@@ -26,7 +26,7 @@ export class Tabs {
     });
   }
 
-  close(event: MouseEvent, locationId: string) {
+  close(locationId: string) {
     this.locationService.removeLocation(locationId);
   }
 }

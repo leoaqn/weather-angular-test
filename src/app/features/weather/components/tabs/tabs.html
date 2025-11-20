@@ -8,7 +8,7 @@
       [class.text-white]="active === location.id"
     >
       {{ location.cityName }}, {{ location.stateCode }} ({{ location.zipCode }})
-      <i class="bi bi-x-lg ms-3 fw-bold text-white ms" (click)="close($event, location.id)"></i>
+      <i class="bi bi-x-lg ms-3 fw-bold text-white ms" (click)="close( location.id)"></i>
     </button>
     <ng-template ngbNavContent>
       <app-weather-description [location]="location"></app-weather-description>

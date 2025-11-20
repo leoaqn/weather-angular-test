@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h5 class="modal-title">Settings</h5>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+  <div class="mb-3">
+    <label for="cacheDuration" class="form-label">Cache Duration</label>
+    <select id="cacheDuration" class="form-select" [(ngModel)]="selectedDuration">
+      @for (option of durationOptions; track option.value) {
+      <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+</div>

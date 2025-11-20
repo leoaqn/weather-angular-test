@@ -5,7 +5,7 @@ import { WeatherService } from '../../services/weather.service';
 import { LocationService } from '../../services/location.service';
 import { Location } from '../../models/location.interface';
 import { ToastService } from '../../../../shared/services/toast.service';
-
+import { CacheService } from '../../../../shared/services/cache.service';
 @Component({
   standalone: true,
   imports: [Tabs, ReactiveFormsModule],
@@ -19,6 +19,7 @@ export class WeatherHomePage implements OnInit {
 
   weatherForm!: FormGroup;
   weatherService = inject(WeatherService);
+  cacheService = inject(CacheService);
   locationService = inject(LocationService);
   toastService = inject(ToastService);
   isLoading = signal<boolean>(false);
