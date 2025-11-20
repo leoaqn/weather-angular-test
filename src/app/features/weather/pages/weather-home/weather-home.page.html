@@ -1,0 +1,46 @@
+<ng-template #successTpl>{{ toastMessage }}</ng-template>
+<ng-template #errorTpl>{{ toastMessage }}</ng-template>
+
+<section class="d-flex flex-column flex-md-column gap-4 mb-5 back bg-light p-4 rounded-3">
+  <form [formGroup]="weatherForm" (ngSubmit)="onSubmit()">
+    <label for="zipCodeInput" class="form-label">Zip Code</label>
+    <div class="d-flex flex-column flex-md-row gap-2 align-items-md-start justify-content-between">
+      <div class="flex-grow-1 flex-md-grow-0">
+        <input
+          class="form-control"
+          id="zipCodeInput"
+          formControlName="zipCode"
+          placeholder="Ex. 12345"
+          [class.is-invalid]="zipCode?.invalid && zipCode?.touched"
+        />
+        @if (zipCode?.invalid && zipCode?.touched) {
+        <div class="text-danger small mt-1">
+          @if (zipCode?.errors?.['required']) { {{ errorMessages.required }} } @else if
+          (zipCode?.errors?.['maxlength']) { {{ errorMessages.maxLength }} } @else if
+          (zipCode?.errors?.['minlength']) { {{ errorMessages.minLength }} } @else if
+          (zipCode?.errors?.['zipCode']) { {{ zipCode?.errors?.['zipCode'] }} }
+        </div>
+        }
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          [disabled]="weatherForm.invalid"
+          style="min-width: 120px"
+        >
+          @if (isLoading()) {
+          <div class="spinner-border spinner-border-sm" role="status"></div>
+          } @else { <span class="fw-bold">Submit</span> }
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+
+@if (locationService.locationsCount() > 0) {
+<section class="d-flex flex-column flex-md-column gap-4 mb-5 back bg-light p-4 rounded-3">
+  <app-tabs (tabClosed)="resetForm()"></app-tabs>
+</section>
+
+}

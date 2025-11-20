@@ -1,0 +1,20 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs">
+  @for (location of locations(); track location.id) {
+  <li [ngbNavItem]="location.id">
+    <button
+      ngbNavLink
+      [class.fw-bold]="active === location.id"
+      [class.bg-primary]="active === location.id"
+      [class.text-white]="active === location.id"
+    >
+      {{ location.cityName }}, {{ location.stateCode }} ({{ location.zipCode }})
+      <i class="bi bi-x-lg ms-3 fw-bold text-white ms" (click)="close( location.id)"></i>
+    </button>
+    <ng-template ngbNavContent>
+      <app-weather-description [location]="location"></app-weather-description>
+    </ng-template>
+  </li>
+  }
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

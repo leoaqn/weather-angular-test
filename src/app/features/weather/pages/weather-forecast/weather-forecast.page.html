@@ -1,0 +1,16 @@
+<app-go-back></app-go-back>
+<ng-template #errorTpl>{{ errorMessages.apiError }}</ng-template>
+<section class="d-flex flex-column flex-md-column gap-4 mb-5 back bg-light p-4 rounded-3">
+  <h1 class="text-center">
+    Weather Forecast for {{ forecastData()[0]?.city_name }}, {{ forecastData()[0]?.state_code }}
+  </h1>
+  @if (isLoading()) {
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+  </div>
+  } @else { @if (forecastData().length > 0) {
+  <app-weather-table [forecastData]="forecastData()"></app-weather-table>
+  } @else {
+  <div class="alert alert-danger" role="alert">{{ errorMessages.apiError }}</div>
+  } }
+</section>

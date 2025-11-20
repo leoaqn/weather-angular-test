@@ -1,0 +1,38 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Temp</th>
+        <th scope="col">Max Temp</th>
+        <th scope="col">Min Temp</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (daysData().length > 0) { @for (day of daysData(); track day.datetime) {
+      <tr>
+        <td>{{ day.datetime }}</td>
+        <td>{{ day.temp }}°F</td>
+        <td>{{ day.max_temp }}°F</td>
+        <td>{{ day.min_temp }}°F</td>
+        <td>
+          <div class="d-flex align-items-center gap-2">
+            <img
+              [src]="getWeatherIconUrl(day.weather.icon)"
+              [alt]="day.weather.description"
+              width="40"
+              height="40"
+            />
+            <span>{{ day.weather.description }}</span>
+          </div>
+        </td>
+      </tr>
+      } } @else {
+      <tr>
+        <td colspan="5" class="text-center">No data available</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
