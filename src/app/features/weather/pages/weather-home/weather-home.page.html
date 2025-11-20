@@ -40,7 +40,7 @@
 
 @if (locationService.locationsCount() > 0) {
 <section class="d-flex flex-column flex-md-column gap-4 mb-5 back bg-light p-4 rounded-3">
-  <app-tabs></app-tabs>
+  <app-tabs (tabClosed)="resetForm()"></app-tabs>
 </section>
 
 }

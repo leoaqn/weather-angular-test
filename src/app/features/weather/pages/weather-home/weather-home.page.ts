@@ -104,4 +104,8 @@ export class WeatherHomePage implements OnInit {
       },
     });
   }
+
+  resetForm() {
+    this.weatherForm.reset();
+  }
 }
