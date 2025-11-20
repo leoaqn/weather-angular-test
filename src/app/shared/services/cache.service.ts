@@ -7,6 +7,17 @@ export class CacheService {
   private CACHE_DURATION_KEY = 'cache_duration';
   private DEFAULT_DURATION = 120;
 
+  constructor() {
+    this.initializeCacheDuration();
+  }
+
+  private initializeCacheDuration() {
+    const stored = localStorage.getItem(this.CACHE_DURATION_KEY);
+    if (!stored) {
+      this.setCacheDuration(this.DEFAULT_DURATION);
+    }
+  }
+
   set(key: string, data: any): void {
     const cacheData = {
       data: data,
@@ -37,11 +48,7 @@ export class CacheService {
 
   getCacheDuration(): number {
     const stored = localStorage.getItem(this.CACHE_DURATION_KEY);
-    if (!stored) {
-      this.setCacheDuration(this.DEFAULT_DURATION);
-      return this.DEFAULT_DURATION;
-    }
-    return parseInt(stored);
+    return stored ? parseInt(stored) : this.DEFAULT_DURATION;
   }
 
   setCacheDuration(minutes?: number): void {
